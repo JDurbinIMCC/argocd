@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+    ingress.kubernetes.io/service-upstream: 'true'
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  ports:
+    - name: 80-tcp
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx
+    deploymentconfig: nginx
+  clusterIP: 172.30.104.195
+  clusterIPs:
+    - 172.30.104.195
+  type: ClusterIP
+  sessionAffinity: None
